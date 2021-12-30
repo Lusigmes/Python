@@ -68,8 +68,8 @@ def checkWinner(board):
         for j in range(3):
             if(board[i][j] == blank):
                     return False
-            #se hoouer alguma posição em branco
-            #o jogador da posição[i][j] venceu
-            #a posição [i][j] é igual ao token do
-            #respectivo jogador
+            #se hoouer alguma posição em branco o jogo continua, pois ainda não há vencedor
+            #se houver 3 tokens X ou O na posição[i][j], o respectivo jogador é o vencedor
+            #saindo do loop naas condiçoes anteriores
+            #se não houver linhas em branco deu empate e encerra o jogo
     return "Tie"
