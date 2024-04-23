@@ -1,0 +1,23 @@
+{% extends "users/base.html" %}
+{% block conteudo %}
+
+    <div style="text-align:center;" class="container"> 
+        <h2>  Lista de Usuarios <h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>id</th>
+                    <th>nome</th>
+                    <th>idade</th>
+                </tr>
+                
+                {% for usuario in users%}
+                <tr>
+                    <td> {{usuario.id}} </td>
+                    <td> {{usuario.nome}} </td>
+                    <td> {{usuario.idade}} </td>
+                </tr>
+                {% endfor%}
+        </table>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,5 @@
+#importar base de dados[]
+#preparar base de dados para a ia[]
+#criar um modelo de ia ----> escore  de credito : bom , ok , ruim[]
+#escolher o melhor modelo[]
+#usar ia para novas previsões[]

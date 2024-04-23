@@ -1,0 +1,23 @@
+{% extends "users/base.html" %}
+{% block conteudo %}
+
+  <form action="{% url 'listagem_users' %}" method="post" onsubmit="limparCampos()">
+    {% csrf_token %}
+    <div style="text-align:center;" class="container">
+      <h2> Cadastrar Usuario </h2>
+      <p>Nome</p><input name="nome" class="form-control-sm" type="text">
+      <p>Idade</p><input name="idade" class="form-control-sm" type="text">
+      <br>
+      <br>
+      <button class="form-control-sm">Cadastrar</button>
+    </div>
+  </form>
+  <!-- Optional JavaScript; choose one of the two! -->
+  <script>
+    function limparCampos() {
+      document.getElementById("nome").value = "";
+      document.getElementById("idade").value = "";
+    }
+  </script>
+
+{% endblock %}
