@@ -1,3 +1,5 @@
+# Construção das classes
+
 from abc import ABC, abstractclassmethod, abstractproperty
 from datetime import datetime
 
@@ -73,12 +75,12 @@ class Conta:
         if valor > 0:
             self._saldo += valor
             print("\n DEPÓSITO REALIZADO COM SUCESSO!!")
-            return True
         else:
             print ("\n OPERAÇÃO FALHA!! VALOR INVÁLIDO.")
             return False
         
         return True
+    
 class ContaCorrente(Conta):
     def __init__(self, numero, cliente, limite = 500, limite_saque = 3):
         super().__init__(numero, cliente)
@@ -136,7 +138,7 @@ class Transacao(ABC):
         pass
     
     @abstractclassmethod
-    def resgistar(self, conta):
+    def registrar(self, conta):
         pass
 
 class Saque(Transacao):
@@ -147,7 +149,7 @@ class Saque(Transacao):
     def valor(self):
         return self._valor
 
-    def registar(self, conta):
+    def registrar(self, conta):
         sucesso_saque = conta.sacar(self.valor)
 
         if sucesso_saque:
@@ -161,7 +163,7 @@ class Deposito(Transacao):
     def valor(self):
         return self._valor
 
-    def registar(self, conta):
+    def registrar(self, conta):
         sucesso_deposito = conta.depositar(self.valor)
 
         if sucesso_deposito:
