@@ -125,9 +125,12 @@ class Extrato:
     def adicionar_transacao(self, transacao):
         self._trasacoes.append(
             {
-                "tipo": transacao.__class__.__name___,
+                
+                "tipo": transacao.__class__.__name__,
                 "valor": transacao.valor,
-                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),       
+                "data": datetime.now().strftime("%d-%m-%Y %H:%M"),
+                # "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),  
+     
             }
         )
         

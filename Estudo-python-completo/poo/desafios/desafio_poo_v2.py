@@ -83,6 +83,7 @@ def exibir_extrato(clientes):
     else:
         for transacao in transacoes:
             extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}"
+    
     print(extrato)
     print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
     print("\n******************* EXTRATO *******************")
@@ -119,30 +120,10 @@ def criar_conta(numero_conta, clientes, contas):
     
     print("\nCONTA CRIADA COM SUCESSO!!")
     
-# def criar_conta(numero_conta, clientes, contas):
-#     print("DEBUG: Número da conta:", numero_conta)
-#     print("DEBUG: Clientes:", clientes)
-#     print("DEBUG: Contas:", contas)
-    
-#     cpf = input("Informe o CPF do cliente: ")
-#     print("DEBUG: CPF do cliente informado:", cpf)
-    
-#     cliente = filtrar_cliente_por_cpf(cpf, clientes)
-#     print("DEBUG: Cliente encontrado:", cliente)
-    
-#     if not cliente:
-#         print("\nCLIENTE NÃO ENCONTRADO!!")
-#         return
-    
-#     conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
-#     contas.append(conta)
-#     cliente.contas.append(conta)
-    
-#     print("\nCONTA CRIADA COM SUCESSO!!")
     
 def listar_contas(contas):
     for conta in contas:
-        print("="+100)
+        print("=" * 100)
         print(textwrap.dedent(str(conta)))
         
 def banco():
