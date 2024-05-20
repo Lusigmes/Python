@@ -2,7 +2,9 @@
 
 # import desafio_poo
 import textwrap
-from desafio_poo import Transacao,Deposito,Saque,Cliente,PessoaFisica,Conta,ContaCorrente,Extrato
+from desafio_banco_classes import Transacao, Deposito, Saque, Cliente, PessoaFisica, Conta, ContaCorrente, ContasIterador, Extrato
+import datetime
+import functools
 
 def menu():
     menu = """\n
@@ -29,7 +31,19 @@ def recuperar_conta_por_cliente(cliente):
 
     # FIXME: não permite cliente escolher a conta
     return cliente.contas[0]
+
+
+def log_transacoes(funcao): #decorador
+    # @functools.wraps(funcao)
+    def conteudo(*args, **kwargs):
+        resultado = funcao(*args, **kwargs)
+        # print(f"{datetime.datetime.now()}: {funcao.__name__.upper()}")
+        print(f"{datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')} -> {funcao.__name__.upper()}")
+        return resultado
     
+    return conteudo
+    
+@log_transacoes
 def depositar(clientes):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente_por_cpf(cpf, clientes)
@@ -44,9 +58,10 @@ def depositar(clientes):
     conta = recuperar_conta_por_cliente(cliente)
     if not conta:
         return
+    
     cliente.realizar_transacao(conta, transacao)
     
-    
+@log_transacoes
 def sacar(clientes):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente_por_cpf(cpf, clientes)
@@ -61,8 +76,10 @@ def sacar(clientes):
     conta = recuperar_conta_por_cliente(cliente)
     if not conta:
         return
+    
     cliente.realizar_transacao(conta, transacao)
     
+@log_transacoes
 def exibir_extrato(clientes):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente_por_cpf(cpf, clientes)
@@ -76,18 +93,21 @@ def exibir_extrato(clientes):
         return
     
     print("\n******************* EXTRATO *******************")
-    transacoes = conta.extrato.transacoes
     extrato = ""
-    if not transacoes:
-        extrato = "Não houve movimentação."
-    else:
-        for transacao in transacoes:
-            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}\n\t{transacao['data']}"
+    possui_transacao = False
+    # for transacao in conta.extrato.gerador_relatorio(tipo_transacao="saque"):
+    # for transacao in conta.extrato.gerador_relatorio(tipo_transacao="deposito"):
+    for transacao in conta.extrato.gerador_relatorio():
+        possui_transacao = True   
+        extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}\n\t{transacao['data']}"
     
+    if not possui_transacao:
+        extrato = "NÃO HOUVE MOVIMENTAÇÕES!"
     print(extrato)
     print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
     print("\n******************* EXTRATO *******************")
 
+@log_transacoes
 def criar_cliente(clientes):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente_por_cpf(cpf, clientes)
@@ -105,7 +125,7 @@ def criar_cliente(clientes):
     
     print("\nCLIENTE CRIADO COM SUCESSO!!")
     
-
+@log_transacoes
 def criar_conta(numero_conta, clientes, contas):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente_por_cpf(cpf, clientes)

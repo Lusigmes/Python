@@ -1,11 +1,10 @@
 import functools #resolve a instrospecção ao decorar uma função
 def duplicar(func):
-    
-    @functools.wraps(func)
-    def msg(*args, **kwargs):
+    @functools.wraps(func) # mantem o nome da função que usa o decorador duplicar
+    def duplicada(*args, **kwargs):
         func(*args, **kwargs)
         return func(*args, **kwargs)
-    return msg
+    return duplicada
 
 @duplicar
 def aprender(tecnologia):
@@ -14,4 +13,4 @@ def aprender(tecnologia):
 
 tecnologia = aprender("Python")
 print(tecnologia)
-print(aprender.__name__)
+print(aprender.__name__) # functools garante que retorne o nome da função "aprender" inves de "duplicada"
