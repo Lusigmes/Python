@@ -15,6 +15,7 @@ print(datetime.datetime.now())# traz o objeto com timezone setado
 hora = datetime.time(5,55)
 print(hora)
 
-
+# while (data := input("Enter data: ")) != "quit":
+#     print(f"You entered: {data}")
 
 

@@ -1,0 +1,28 @@
+[ [25-05-2024 22:35:32]
+Função: (criar_cliente)
+Executada com argumentos:(([<PessoaFisica: (1)>],), {}).
+Retornou:None ]
+[ [25-05-2024 22:35:42]
+Função: (criar_conta)
+Executada com argumentos:((1, [<PessoaFisica: (1)>], [<ContaCorrente: ('0001', '1', 'Luis'>]), {}).
+Retornou:None ]
+[ [25-05-2024 22:36:02]
+Função: (depositar)
+Executada com argumentos:(([<PessoaFisica: (1)>],), {}).
+Retornou:None ]
+[ [25-05-2024 22:36:07]
+Função: (sacar)
+Executada com argumentos:(([<PessoaFisica: (1)>],), {}).
+Retornou:None ]
+[ [25-05-2024 22:36:12]
+Função: (exibir_extrato)
+Executada com argumentos:(([<PessoaFisica: (1)>],), {}).
+Retornou:None ]
+[ [25-05-2024 22:39:26]
+Função: (criar_cliente)
+Executada com argumentos:(([<PessoaFisica: (2)>],), {}).
+Retornou:None ]
+[ [25-05-2024 22:42:07]
+Função: (criar_cliente)
+Executada com argumentos:(([<PessoaFisica: ('Roberto','1')>],), {}).
+Retornou:None ]

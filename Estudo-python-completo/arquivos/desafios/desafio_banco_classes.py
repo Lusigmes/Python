@@ -47,6 +47,9 @@ class PessoaFisica(Cliente):
         self.nome = nome
         self.data_nascimento = data_nascimento
         self.cpf = cpf
+        
+    def __repr__(self) -> str:
+        return f"<{self.__class__.__name__}: ('{self.nome}','{self.cpf}')>"
     
 class Conta:
     def __init__(self, numero, cliente):
@@ -138,6 +141,9 @@ class ContaCorrente(Conta):
                 C/C:\t\t{self.numero}
                 Titular:\t{self.cliente.nome}
         """
+        
+    def __repr__(self) -> str:
+        return f"<{self.__class__.__name__}: ('{self.agencia}', '{self.numero}', '{self.cliente.nome}'>"
 
 class Extrato:
     def __init__(self):

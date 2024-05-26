@@ -5,7 +5,7 @@ import textwrap
 from desafio_banco_classes import Transacao, Deposito, Saque, Cliente, PessoaFisica, Conta, ContaCorrente, ContasIterador, Extrato
 import datetime
 import functools
-
+from pathlib import Path
 def menu():
     menu = """\n
     **************** MENU ****************
@@ -32,13 +32,24 @@ def recuperar_conta_por_cliente(cliente):
     # FIXME: não permite cliente escolher a conta
     return cliente.contas[0]
 
+ROOT_PATH = Path(__file__).parent
 
 def log_transacoes(funcao): #decorador
     # @functools.wraps(funcao)
     def conteudo(*args, **kwargs):
         resultado = funcao(*args, **kwargs)
-        # print(f"{datetime.datetime.now()}: {funcao.__name__.upper()}")
-        print(f"{datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')} -> {funcao.__name__.upper()}")
+        data_hora = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+        try:
+            with open(ROOT_PATH / 'log.txt', 'a', newline='', encoding='utf-8') as arquivo:
+                arquivo.write(
+                    f"[ [{data_hora}]\nFunção: ({funcao.__name__})\nExecutada com argumentos:({args}, {kwargs}).\nRetornou:{resultado} ]\n"
+                )
+        except IOError as e:
+            print(f"ERRO:[{e}]")
+            
+        # salvar em arquivo
+        print(f"[{data_hora}] -> ({funcao.__name__.upper()})")
         return resultado
     
     return conteudo

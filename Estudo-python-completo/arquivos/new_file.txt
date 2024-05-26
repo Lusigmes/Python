@@ -1,0 +1,8 @@
+Escrevendo no arquivo com write utf-8 çáôõ
+testando writelines
+nova
+escrita
+no
+arquivo
+com
+writelines
