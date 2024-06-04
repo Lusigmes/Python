@@ -1,0 +1,45 @@
+# pip install fastapi uvicorn sqlalchemy pydantic
+
+#uvicorn api.main:app --reload -> iniciar o server
+        <local>.<arquivo.py>:app
+
+docker-compose alembic
+
+
+Passo 1
+# Em atleta/schemas.py
+# Classes em atleta
+# from pydantic import BaseModel, Field, PositiveFloat
+# from typing import Annotated
+# from api.contrib.schemas import BaseSchema
+
+
+Passo 2
+# Em Api criar pasta contrib e dentro criar arquivo models.py 
+# Classes em contrib/models.py
+# from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+# from sqlalchemy import UUID
+# from uuid import uuid4
+# from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+
+Passo 3
+# em atleta/models.py
+# Classe AtletMmodel
+#from api.contrib.models import BaseModel
+#from sqlalchemy.orm import  Mapped, mapped_column
+#from sqlalchemy import Integer, String, Float, DateTime
+#from datetime import datetime
+
+Passo 4
+# Na pasta contrib e dentro criar arquivo schemas.py 
+# Classes em contrib/schemas.py
+from pydantic import BaseModel
+
+Passo 5
+criar outras classes seguindo o passo 1,3
+
+
+
+
+Passo 6
+docker compose
