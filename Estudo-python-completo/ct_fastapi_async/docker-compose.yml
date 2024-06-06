@@ -1,6 +1,10 @@
 version: '3'
 services: 
   db:
-    image:
-    enviroment:
-    
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: ct_api
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ct_api
+    ports:
+      - "5433:5433"
