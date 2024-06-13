@@ -1,0 +1,46 @@
+pip install poetry
+
+poetry init
+<escolher dependencias>
+(
+python = "^3.12"
+fastapi = "^0.111.0"
+uvicorn = "^0.30.1"
+pydantic = "^2.7.3"
+pydantic-settings = "^2.3.2"
+motor = "^3.4.0"
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.7"
+)
+
+poetry install
+
+
+criar pastas docs/imgs
+
+# Construir configurações
+
+criar pasta base(store, )
+    criar __init__.py
+    criar main.py -> PREENCHER
+
+    criar pasta core
+        criar __init__.py
+        criar config.py -> PREENCHER
+
+criar .env -> preencher com string de conexão do mongo
+
+criar docker-compose.yml -> preencher com as configurações
+    nano docker-compose.yml -> setar configuraç~oes
+
+criar Makefile com :
+    run:
+	@uvicorn store.main:app --reload
+sudo docker-compose up -d -> iniciar docker
+executar no terminal make run
+
+adicionar em Makefile:
+    precommit-install:
+	    @poetry run pre-commit install
+executar no terminal make pre-commit install
