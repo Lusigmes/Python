@@ -16,7 +16,6 @@ pytest-asyncio = "^0.23.7"
 
 poetry install
 
-
 criar pastas docs/imgs
 
 # Construir configurações
@@ -37,10 +36,34 @@ criar docker-compose.yml -> preencher com as configurações
 criar Makefile com :
     run:
 	@uvicorn store.main:app --reload
-sudo docker-compose up -d -> iniciar docker
+docker-compose up -d -> iniciar docker // docker-compose down-> fechar docker
 executar no terminal make run
 
 adicionar em Makefile:
     precommit-install:
 	    @poetry run pre-commit install
 executar no terminal make pre-commit install
+
+criar pasta tests na raiz
+    criar pasta schemas na pasta tests
+        criar arquivo test_product.py para testar o schema do produto
+            preencher as funções de teste de acordo com o comportamento esperado
+
+adicionar em Makefile:
+    test:
+	    @poetry run pytest
+executar no terminal make test
+
+
+criar pasta schemas na pasta store
+    criar arquivo base.py e criar um schema base para os produtos(BaseSchemaMixin)
+
+    criar arquivo product.py e preencher com os atributos do produto
+    importar e herdar o schema base de BaseSchemaMixin
+
+na pasta tests/schemas em test_product.py importar construtor do produto em product.py e realizar os testes criados em test_products.py
+executar no terminal make test
+
+criar aquivo factories.py ma pasta tests
+    criar funções para retornar objetos
+    mockados para realizar testes
