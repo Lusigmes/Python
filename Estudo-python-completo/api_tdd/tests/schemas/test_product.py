@@ -8,7 +8,6 @@ from tests.factories import product_data, product_data_raise
 def test_schemas_validated():
     data = product_data()
     product = ProductIn(**data)
-
     assert product.name == "Notebook"
     assert isinstance(product.id, UUID)
 

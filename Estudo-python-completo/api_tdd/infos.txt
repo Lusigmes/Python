@@ -43,6 +43,7 @@ adicionar em Makefile:
     precommit-install:
 	    @poetry run pre-commit install
 executar no terminal make pre-commit install
+executar pre-commit apenas uma vez
 
 criar pasta tests na raiz
     criar pasta schemas na pasta tests
@@ -67,3 +68,42 @@ executar no terminal make test
 criar aquivo factories.py ma pasta tests
     criar funções para retornar objetos
     mockados para realizar testes
+
+criar arquivo conftest.py na pasta tests
+    criar metodo event_loop para teste assincrono(?) no banco
+
+criar pasta db na pasta store
+    criar arquivo mongo.py e criar um cliente mongo utilizando lib motor
+
+dentro de tests/conftest.py chamar ocliente mongo criado em mongo.py
+e deve criar metodos para tratar o cliente mongo
+
+criar pasta usecases dentro da pasta tests
+    criar arquivo test_product.py em usecases
+        criar metodos de casos de uso requeridos para os testes
+
+criar pasta usecases dentro da pasta store
+    criar arquivo product.py em usecases
+        criar metodo ProductUseCase para obter dados de caso de uso
+        em tests/usecases/test_products deve chamar o product_usecase
+
+        criar atributo database herdando de AsyncIOMotorDatabase para criar o banco
+
+        criar atributo collection interagindo com database para criar collections no mongo
+
+(Pdb) self.client
+AsyncIOMotorClient(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', version='3.4.0', platform='asyncio')))
+
+(Pdb) self.client.get_database()
+AsyncIOMotorDatabase(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', version='3.4.0', platform='asyncio')), 'api_tdd'))
+
+(Pdb) self.database.get_collection("products")
+AsyncIOMotorCollection(Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=False, driver=DriverInfo(name='Motor', version='3.4.0', platform='asyncio')), 'api_tdd'), 'products'))
+
+
+em store/usecases/product.py criar metodo create dentror de ProductUseCase
+
+em tests/conftest.py criar metodos fixture para product_in e product_id
+e chamar em tests/usecases/test_products
+
+erro no teste =  async def test_usecases_should_return_sucess():
