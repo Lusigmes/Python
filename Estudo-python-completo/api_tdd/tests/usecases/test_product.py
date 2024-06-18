@@ -61,4 +61,5 @@ async def test_usecases_delete_should_not_found():
     assert (
         err.value.message
         == "Product not found with ID: 6f123456-18ba-45f5-1234-333e222a111c"
+        # Product not found with filter:
     )
