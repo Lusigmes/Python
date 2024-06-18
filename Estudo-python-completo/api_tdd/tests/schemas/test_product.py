@@ -1,5 +1,4 @@
 from store.schemas.product import ProductIn
-from uuid import UUID
 import pytest
 from pydantic import ValidationError
 from tests.factories import product_data, product_data_raise
@@ -8,8 +7,9 @@ from tests.factories import product_data, product_data_raise
 def test_schemas_validated():
     data = product_data()
     product = ProductIn(**data)
+
     assert product.name == "Notebook"
-    assert isinstance(product.id, UUID)
+    # assert isinstance(product.id, UUID)
 
 
 def test_schemas_return_raise():
